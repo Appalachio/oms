@@ -34,5 +34,5 @@ Finally, visit localhost:3000 in your web browser.
 There are many tests and checks that must pass for changes to be approved and merged. They will automatically be run on all pull requests. Additionally, you can run them locally from within the project's root directory:
 
 ```console
-bin/test
+script/test
 ```
