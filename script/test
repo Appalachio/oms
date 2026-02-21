@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+set -e
+
+bin/brakeman
+bin/bundler-audit
+bun audit
+bin/rubocop
+bundle exec erb_lint --lint-all
+bin/rails test
