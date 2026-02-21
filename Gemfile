@@ -26,6 +26,9 @@ gem "solid_cache", "~> 1.0.10"
 gem "solid_queue", "~> 1.3.2"
 gem "solid_cable", "~> 3.0.12"
 
+# View background jobs in a web UI
+gem "mission_control-jobs", "~> 1.1.0"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", "~> 1.23.0", require: false
 

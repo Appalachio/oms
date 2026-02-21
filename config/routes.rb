@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
+    mount MissionControl::Jobs::Engine, at: "/jobs"
   end
 
   # Defines the root path route ("/")
