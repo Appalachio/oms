@@ -60,6 +60,9 @@ group :development do
   gem "letter_opener", "~> 1.10.0"
   # Browse sent emails in the browser
   gem "letter_opener_web", "~> 3.0.0"
+
+  # Automatically add a comment with the database schema to the top of relevant files
+  gem "annotaterb", "~> 4.22.0"
 end
 
 group :test do
