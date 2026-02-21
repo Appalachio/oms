@@ -55,6 +55,11 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console", "~> 4.2.1"
+
+  # Send emails to a new tab of the browser
+  gem "letter_opener", "~> 1.10.0"
+  # Browse sent emails in the browser
+  gem "letter_opener_web", "~> 3.0.0"
 end
 
 group :test do
