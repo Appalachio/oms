@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @org %>
+
+<div>
+  <%= link_to "Edit this org", edit_org_path(@org) %> |
+  <%= link_to "Back to orgs", orgs_path %>
+
+  <%= button_to "Destroy this org", @org, method: :delete %>
+</div>

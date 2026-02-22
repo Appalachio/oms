@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  org_uuid: 
+  slug: MyText
+  name: MyText
+  subdomain: MyText
+  domain: MyText
+  color_scheme: 
+  archived_at: 2026-02-22 08:53:54
+
+two:
+  org_uuid: 
+  slug: MyText
+  name: MyText
+  subdomain: MyText
+  domain: MyText
+  color_scheme: 
+  archived_at: 2026-02-22 08:53:54

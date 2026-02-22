@@ -1,0 +1,11 @@
+<% content_for :title, "New org" %>
+
+<h1>New org</h1>
+
+<%= render "form", org: @org %>
+
+<br>
+
+<div>
+  <%= link_to "Back to orgs", orgs_path %>
+</div>
