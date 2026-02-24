@@ -1,5 +1,12 @@
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    confirmations: "users/confirmations",
+    passwords: "users/passwords",
+    registrations: "users/registrations",
+    sessions: "users/sessions",
+    unlocks: "users/unlocks"
+  }
   resources :orgs
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
