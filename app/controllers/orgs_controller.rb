@@ -1,13 +1,19 @@
 class OrgsController < ApplicationController
-  before_action :set_org, only: %i[ show edit update destroy ]
+  before_action :set_org, only: %i[ show edit update archive restore destroy ]
 
   # GET /orgs or /orgs.json
   def index
-    @orgs = Org.all
+    # Only load orgs that have not been archived
+    # Paginate the orgs for view
+    @orgs = Org.active.page(params[:page])
   end
 
   # GET /orgs/1 or /orgs/1.json
   def show
+    # Redirect to the latest version of the org url if an old version was used
+    if request.path != org_path(@org)
+      redirect_to(@org, status: :moved_permanently)
+    end
   end
 
   # GET /orgs/new
@@ -17,6 +23,10 @@ class OrgsController < ApplicationController
 
   # GET /orgs/1/edit
   def edit
+    # Redirect to the latest version of the org url if an old version was used
+    if request.path != edit_org_path(@org)
+      redirect_to(edit_org_path(@org), status: :moved_permanently)
+    end
   end
 
   # POST /orgs or /orgs.json
@@ -47,6 +57,28 @@ class OrgsController < ApplicationController
     end
   end
 
+  # PUT /orgs/1/archive or /orgs/1/archive.json
+  # Soft deletes the org
+  def archive
+    @org.archive
+
+    respond_to do |format|
+      format.html { redirect_to @org, notice: "Organization was successfully archived. You can restore it at any time." }
+      format.json { render :show, status: :ok, location: @org }
+    end
+  end
+
+  # PUT /orgs/1/restore or /orgs/1/restore.json
+  # Restores (un-soft deletes) the org
+  def restore
+    @org.restore
+
+    respond_to do |format|
+      format.html { redirect_to @org, notice: "Organization was successfully restored." }
+      format.json { render :show, status: :ok, location: @org }
+    end
+  end
+
   # DELETE /orgs/1 or /orgs/1.json
   def destroy
     @org.destroy!
@@ -60,11 +92,11 @@ class OrgsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_org
-      @org = Org.find(params.expect(:id))
+      @org = Org.friendly.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def org_params
-      params.expect(org: [ :org_uuid, :slug, :name, :subdomain, :domain, :color_scheme, :about, :logo, :archived_at ])
+      params.expect(org: [ :name, :subdomain, :domain, :color_scheme, :about, :logo ])
     end
 end

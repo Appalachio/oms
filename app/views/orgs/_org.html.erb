@@ -1,15 +1,5 @@
 <div id="<%= dom_id org %>">
   <div>
-    <strong>Org uuid:</strong>
-    <%= org.org_uuid %>
-  </div>
-
-  <div>
-    <strong>Slug:</strong>
-    <%= org.slug %>
-  </div>
-
-  <div>
     <strong>Name:</strong>
     <%= org.name %>
   </div>
@@ -38,10 +28,4 @@
     <strong>Logo:</strong>
     <%= link_to org.logo.filename, org.logo if org.logo.attached? %>
   </div>
-
-  <div>
-    <strong>Archived at:</strong>
-    <%= org.archived_at %>
-  </div>
-
 </div>

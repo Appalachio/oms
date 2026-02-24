@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_22_113309) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_22_135354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "org_color_scheme", ["default", "brite", "cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "litera", "lumen", "lux", "materia", "minty", "morph", "pulse", "quartz", "sandstone", "simplex", "sketchy", "slate", "solar", "spacelab", "superhero", "united", "vapor", "yeti", "zephyr"]
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
@@ -61,6 +65,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_22_113309) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "orgs", force: :cascade do |t|
+    t.datetime "archived_at"
+    t.enum "color_scheme", default: "default", null: false, enum_type: "org_color_scheme"
+    t.datetime "created_at", null: false
+    t.text "domain"
+    t.text "name", null: false
+    t.uuid "org_uuid", null: false
+    t.text "slug", null: false
+    t.text "subdomain"
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_orgs_on_name", unique: true
+    t.index ["org_uuid"], name: "index_orgs_on_org_uuid", unique: true
+    t.index ["slug"], name: "index_orgs_on_slug", unique: true
   end
 
   create_table "versions", force: :cascade do |t|
