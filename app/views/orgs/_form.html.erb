@@ -4,12 +4,12 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :name, input_html: { autocomplete: "organization" } %>
+    <%= f.input :name, required: true, autofocus: true, input_html: { autocomplete: "organization" } %>
     <%= f.input :subdomain %>
     <%= f.input :domain %>
-    <%= f.input :color_scheme, collection: color_scheme_values %>
-    <%= f.input :about, as: :rich_text_area %>
-    <%= f.input :logo %>
+    <%= f.input :color_scheme, collection: color_scheme_values, required: true %>
+    <%= f.input :about, as: :rich_text_area, required: true %>
+    <%= f.input :logo, required: true %>
   </div>
 
   <div class="form-actions">

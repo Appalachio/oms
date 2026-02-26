@@ -29,22 +29,16 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  archived_at            :datetime
-#  org_id                 :bigint           not null
 #
 # Indexes
 #
 #  index_users_on_confirmation_token    (confirmation_token) UNIQUE
 #  index_users_on_email                 (email) UNIQUE
-#  index_users_on_org_id                (org_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_slug                  (slug) UNIQUE
 #  index_users_on_unlock_token          (unlock_token) UNIQUE
 #  index_users_on_user_uuid             (user_uuid) UNIQUE
 #  index_users_on_username              (username) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_e73753bccb  (org_id => orgs.id)
 #
 class User < ApplicationRecord
   # Include devise user authentication modules. Others available are: :omniauthable

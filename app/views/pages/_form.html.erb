@@ -4,18 +4,11 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :page_uuid %>
-    <%= f.input :slug %>
-    <%= f.input :title %>
+    <%= f.input :title, required: true, autofocus: true %>
     <%= f.input :subtitle %>
-    <%= f.input :body %>
-    <%= f.input :page_type %>
-    <%= f.input :page_data %>
-    <%= f.input :pictures %>
+    <%= f.input :body, as: :rich_text_area, required: true %>
+    <%= f.input :pictures, multiple: true %>
     <%= f.input :published_at %>
-    <%= f.input :archived_at %>
-    <%= f.association :user %>
-    <%= f.association :org %>
   </div>
 
   <div class="form-actions">

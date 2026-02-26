@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_24_181114) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_26_125800) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "org_color_scheme", ["default", "brite", "cerulean", "cosmo", "cyborg", "darkly", "flatly", "journal", "litera", "lumen", "lux", "materia", "minty", "morph", "pulse", "quartz", "sandstone", "simplex", "sketchy", "slate", "solar", "spacelab", "superhero", "united", "vapor", "yeti", "zephyr"]
+  create_enum "page_page_type", ["default"]
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
@@ -80,6 +81,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_24_181114) do
     t.index ["name"], name: "index_orgs_on_name", unique: true
     t.index ["org_uuid"], name: "index_orgs_on_org_uuid", unique: true
     t.index ["slug"], name: "index_orgs_on_slug", unique: true
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.datetime "archived_at"
+    t.datetime "created_at", null: false
+    t.jsonb "page_data", default: {}
+    t.enum "page_type", default: "default", null: false, enum_type: "page_page_type"
+    t.uuid "page_uuid", null: false
+    t.datetime "published_at"
+    t.text "slug", null: false
+    t.text "subtitle"
+    t.text "title", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_uuid"], name: "index_pages_on_page_uuid", unique: true
+    t.index ["slug"], name: "index_pages_on_slug", unique: true
+    t.index ["title"], name: "index_pages_on_title", unique: true
   end
 
   create_table "users", force: :cascade do |t|

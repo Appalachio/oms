@@ -1,25 +1,40 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# == Schema Information
+#
+# Table name: pages
+# Database name: primary
+#
+#  id           :bigint           not null, primary key
+#  page_data    :jsonb
+#  page_type    :enum             default("default"), not null
+#  page_uuid    :uuid             not null
+#  published_at :datetime
+#  slug         :text             not null
+#  subtitle     :text
+#  title        :text             not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  archived_at  :datetime
+#
+# Indexes
+#
+#  index_pages_on_page_uuid  (page_uuid) UNIQUE
+#  index_pages_on_slug       (slug) UNIQUE
+#  index_pages_on_title      (title) UNIQUE
+#
 one:
-  page_uuid: 
-  slug: MyText
-  title: MyText
-  subtitle: MyText
-  page_type: 
-  page_data: 
-  published_at: 2026-02-26 07:58:00
-  archived_at: 2026-02-26 07:58:00
+  page_uuid: 7fd793bb-e2d0-41bc-b75c-8974e8f99c32
+  slug: mytext1
+  title: MyText1
+  page_type: default
   user: one
   org: one
 
-two:
-  page_uuid: 
-  slug: MyText
-  title: MyText
-  subtitle: MyText
-  page_type: 
-  page_data: 
-  published_at: 2026-02-26 07:58:00
-  archived_at: 2026-02-26 07:58:00
+one:
+  page_uuid: 111d793bb-e2d0-fabc-b75c-8974e8f99c32
+  slug: mytext2
+  title: MyText2
+  page_type: default
   user: two
   org: two

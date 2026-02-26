@@ -31,7 +31,7 @@ class Org < ApplicationRecord
   }, prefix: true, default: :default, validate: true
 
   has_many :users
-  # has_many :pages
+  has_many :pages
 
   validates :name, :about, :logo, :color_scheme, presence: true
   validates :name, uniqueness: true
