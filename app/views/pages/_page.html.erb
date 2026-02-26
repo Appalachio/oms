@@ -1,0 +1,64 @@
+<div id="<%= dom_id page %>">
+  <div>
+    <strong>Page uuid:</strong>
+    <%= page.page_uuid %>
+  </div>
+
+  <div>
+    <strong>Slug:</strong>
+    <%= page.slug %>
+  </div>
+
+  <div>
+    <strong>Title:</strong>
+    <%= page.title %>
+  </div>
+
+  <div>
+    <strong>Subtitle:</strong>
+    <%= page.subtitle %>
+  </div>
+
+  <div>
+    <strong>Body:</strong>
+    <%= page.body %>
+  </div>
+
+  <div>
+    <strong>Page type:</strong>
+    <%= page.page_type %>
+  </div>
+
+  <div>
+    <strong>Page data:</strong>
+    <%= page.page_data %>
+  </div>
+
+  <div>
+    <strong>Pictures:</strong>
+    <% page.pictures.each do |picture| %>
+      <div><%= link_to picture.filename, picture %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <strong>Published at:</strong>
+    <%= page.published_at %>
+  </div>
+
+  <div>
+    <strong>Archived at:</strong>
+    <%= page.archived_at %>
+  </div>
+
+  <div>
+    <strong>User:</strong>
+    <%= page.user_id %>
+  </div>
+
+  <div>
+    <strong>Org:</strong>
+    <%= page.org_id %>
+  </div>
+
+</div>

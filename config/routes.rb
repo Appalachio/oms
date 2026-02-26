@@ -1,5 +1,7 @@
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  resources :pages
+
   devise_for :users, controllers: {
     confirmations: "users/confirmations",
     passwords: "users/passwords",
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
     put :archive, on: :member
     put :restore, on: :member
   end
+
   resources :orgs
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
