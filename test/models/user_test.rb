@@ -1,3 +1,45 @@
+# == Schema Information
+#
+# Table name: users
+# Database name: primary
+#
+#  id                     :bigint           not null, primary key
+#  admin                  :boolean          default(FALSE), not null
+#  confirmation_sent_at   :datetime
+#  confirmation_token     :string
+#  confirmed_at           :datetime
+#  current_sign_in_at     :datetime
+#  current_sign_in_ip     :string
+#  display_name           :text             not null
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  failed_attempts        :integer          default(0), not null
+#  last_sign_in_at        :datetime
+#  last_sign_in_ip        :string
+#  locked_at              :datetime
+#  remember_created_at    :datetime
+#  reset_password_sent_at :datetime
+#  reset_password_token   :string
+#  sign_in_count          :integer          default(0), not null
+#  slug                   :text             not null
+#  unconfirmed_email      :string
+#  unlock_token           :string
+#  user_uuid              :uuid             not null
+#  username               :text             not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  archived_at            :datetime
+#
+# Indexes
+#
+#  index_users_on_confirmation_token    (confirmation_token) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#  index_users_on_slug                  (slug) UNIQUE
+#  index_users_on_unlock_token          (unlock_token) UNIQUE
+#  index_users_on_user_uuid             (user_uuid) UNIQUE
+#  index_users_on_username              (username) UNIQUE
+#
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
     unlocks: "users/unlocks"
   }
+  resources :users, only: [ :show, :index ] do
+    put :archive, on: :member
+    put :restore, on: :member
+  end
   resources :orgs
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

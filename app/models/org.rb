@@ -28,13 +28,14 @@ class Org < ApplicationRecord
 
   enum :color_scheme, {
     default: "default", brite: "brite", cerulean: "cerulean", cosmo: "cosmo", cyborg: "cyborg", darkly: "darkly", flatly: "flatly", journal: "journal", litera: "litera", lumen: "lumen", lux: "lux", materia: "materia", minty: "minty", morph: "morph", pulse: "pulse", quartz: "quartz", sandstone: "sandstone", simplex: "simplex", sketchy: "sketchy", slate: "slate", solar: "solar", spacelab: "spacelab", superhero: "superhero", united: "united", vapor: "vapor", yeti: "yeti", zerphyr: "zephyr"
-  }, prefix: true, default: :default
+  }, prefix: true, default: :default, validate: true
 
-  # has_many :users
+  has_many :users
   # has_many :pages
 
   validates :name, :about, :logo, :color_scheme, presence: true
   validates :name, uniqueness: true
+  validate :logo_is_a_picture
 
   has_paper_trail
   include Archivable
@@ -51,5 +52,11 @@ class Org < ApplicationRecord
 
   def assign_org_uuid
     self.org_uuid = SecureRandom.uuid if self.org_uuid.blank?
+  end
+
+  def logo_is_a_picture
+    if logo.attached? && !logo.content_type.in?(%w[image/png image/jpeg image/gif])
+      errors.add(:logo, "must be in a photo format (png, jpeg, or gif)")
+    end
   end
 end
